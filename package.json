@@ -1,0 +1,19 @@
+{
+  "name": "automate",
+  "version": "0.1.0",
+  "description": "Automation of page manipulation",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thibaultboursier/automate.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thibaultboursier/automate/issues"
+  },
+  "homepage": "https://github.com/thibaultboursier/automate#readme"
+}
