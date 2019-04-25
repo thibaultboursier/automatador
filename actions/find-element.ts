@@ -7,7 +7,7 @@ export const findElement = (selector: string) => {
 
   return new Promise((resolve, reject) => {
     const interval = setInterval(() => {
-      const element = document.querySelector(selector);
+      const element = document.querySelector(selector) as HTMLElement;
       
       if (element) {
         clearInterval(interval);
