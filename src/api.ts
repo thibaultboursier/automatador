@@ -19,5 +19,5 @@ export const runStories = async (stories: Story[], options: Options = {}) => {
 };
 
 const initialize = () => {
-    createCursor();
+  createCursor();
 };
