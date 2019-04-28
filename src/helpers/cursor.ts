@@ -19,7 +19,7 @@ export const createCursor = (options: CreateCursorOptions = {}) => {
     cursor.style.left = '0px';
     cursor.style.position = 'fixed';
     cursor.style.top = '0px';
-    cursor.style.transition = `0.2s linear all`;
+    cursor.style.transition = `0.5s linear all`;
     cursor.style.zIndex = '15999';
     cursor.src = cursorBase64;
 

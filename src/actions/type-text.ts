@@ -18,7 +18,7 @@ export const typeText = async (element: HTMLInputElement, text: string, options:
   }
 
   if (shouldTypelikeAnUser) {
-    typeTextLikeAnUser(element, text);
+    await typeTextLikeAnUser(element, text);
   } else {
     element.value = text;
   }
