@@ -2,7 +2,7 @@ interface WaitOptions{
   timeInMS?: number;
 }
 
-export const wait = (options: WaitOptions = {}): Promise<undefined> => {
+export const wait = (options: WaitOptions = {}) => {
   const timeInMS = options.timeInMS || 2000;
   
   return new Promise(resolve => setTimeout(resolve, timeInMS));
