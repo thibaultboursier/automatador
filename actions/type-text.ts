@@ -7,7 +7,7 @@ interface TypeTextOptions{
   shouldTypelikeAnUser?: boolean;
 }
 
-export const typeText = async (text: string, element: HTMLInputElement, options: TypeTextOptions = {}) => {
+export const typeText = async (element: HTMLInputElement, text: string, options: TypeTextOptions = {}) => {
   const shouldClear = options.shouldClear || true;
   const shouldTypelikeAnUser = options.shouldTypelikeAnUser || true;
 
@@ -18,7 +18,7 @@ export const typeText = async (text: string, element: HTMLInputElement, options:
   }
 
   if (shouldTypelikeAnUser) {
-    typeTextLikeAnUser(text, element);
+    typeTextLikeAnUser(element, text);
   } else {
     element.value = text;
   }
@@ -26,7 +26,7 @@ export const typeText = async (text: string, element: HTMLInputElement, options:
   dispatchEventsFromElement(element, 'change', 'input');
 }
 
-const typeTextLikeAnUser = async (text: string, element: HTMLInputElement) => {
+const typeTextLikeAnUser = async (element: HTMLInputElement, text: string) => {
   for (const letter of text) {
       element.value = element.value + letter;
 

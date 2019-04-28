@@ -1,4 +1,4 @@
-import { createAndInsertCursor } from "./helpers/cursor";
+import { createCursor } from "./helpers/cursor";
 
 interface Options {
   logs?: boolean;
@@ -19,5 +19,5 @@ export const runStories = async (stories: Story[], options: Options = {}) => {
 };
 
 const initialize = () => {
-    createAndInsertCursor();
+    createCursor();
 };

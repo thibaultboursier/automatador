@@ -1,6 +1,7 @@
-const cursor = document.getElementById('cursor');
+import { getCursor } from "../helpers/cursor";
 
 export const hover = (element: HTMLElement) => {
+  const cursor = getCursor();
   const { offsetHeight, offsetWidth } = element;
   const { left, top } = element.getBoundingClientRect();
   
