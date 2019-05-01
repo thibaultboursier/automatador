@@ -1,6 +1,5 @@
-export const dispatchEventsFromElement = (element: HTMLElement, ...eventTypes: string[]) => {
+export const dispatchEventsFromElement = (element: HTMLElement, ...eventTypes: string[]): void => {
     eventTypes.forEach(eventType => {
-      element.dispatchEvent(new Event(eventType, { bubbles: true }))
+        element.dispatchEvent(new Event(eventType, { bubbles: true }));
     });
- };
- 
+};
