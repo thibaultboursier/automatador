@@ -1,25 +1,36 @@
-import { wait } from './wait';
-import { dispatchEventsFromElement } from '../helpers/events';
-import { hover } from './hover';
-import { isElementEditable } from '../helpers/dom';
+import { wait } from "./wait";
+import { dispatchEventsFromElement } from "../helpers/events";
+import { hover } from "./hover";
+import { isElementEditable } from "../helpers/dom";
 
-interface TypeTextOptions{
+interface TypeTextOptions {
   shouldClear?: boolean;
   shouldTypelikeAnUser?: boolean;
 }
 
-export const typeText = async (element: HTMLInputElement, text: string, options: TypeTextOptions = {}) => {
-  const shouldClear = options.shouldClear || true;
-  const shouldTypelikeAnUser = options.shouldTypelikeAnUser || true;
+const defaultTypeTextOptions = {
+  shouldClear: true,
+  shouldTypelikeAnUser: true
+};
+
+export const typeText = async (
+  element: HTMLInputElement,
+  text: string,
+  options?: Partial<TypeTextOptions>
+) => {
+  const { shouldClear, shouldTypelikeAnUser } = {
+    ...defaultTypeTextOptions,
+    ...options
+  };
 
   if (!isElementEditable(element)) {
-    throw new Error('Element is not editable');
+    throw new Error("Element is not editable");
   }
 
   await hover(element);
 
   if (shouldClear) {
-    element.value = '';
+    element.value = "";
   }
 
   if (shouldTypelikeAnUser) {
@@ -28,13 +39,13 @@ export const typeText = async (element: HTMLInputElement, text: string, options:
     element.value = text;
   }
 
-  dispatchEventsFromElement(element, 'change', 'input');
-}
+  dispatchEventsFromElement(element, "change", "input");
+};
 
 const typeTextLikeAnUser = async (element: HTMLInputElement, text: string) => {
   for (const letter of text) {
-      element.value = element.value + letter;
+    element.value = element.value + letter;
 
-      await wait({ timeInMS: 200 });
-    }
+    await wait({ timeInMS: 200 });
+  }
 };
