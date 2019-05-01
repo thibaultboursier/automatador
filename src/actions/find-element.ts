@@ -1,4 +1,16 @@
-export const findElement = (selector: string) => {
+interface FindElementOptions {
+  timeoutInMS: number;
+}
+
+const defaultFindElementOptions = {
+  timeoutInMS: 10000,
+};
+
+export const findElement = (selector: string, options?: Partial<FindElementOptions>) => {
+  const { timeoutInMS } = {
+    ...defaultFindElementOptions,
+    ...options,
+  };
   const timeStamp = Date.now();
 
   if (!selector) {
@@ -14,7 +26,7 @@ export const findElement = (selector: string) => {
         return resolve(element);
       }
 
-      if ((Date.now() - timeStamp) >= 10000) {
+      if ((Date.now() - timeStamp) >= timeoutInMS) {
         clearInterval(interval);
         return reject(`Element "${selector}" was not found`);
       }
