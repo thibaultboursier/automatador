@@ -1,28 +1,30 @@
 import { typeText } from "./type-text";
 
-jest.mock('./hover', () => ({
-    hover: () => {}
+jest.mock("./hover", () => ({
+  hover: () => {}
 }));
 
 it("should type text inside input", async () => {
-    // Given
-    const element = document.createElement('input');
-  
-    // When
-    await typeText(element, "bar");
-  
-    expect(element.value).toBe("bar");
+  // Given
+  const element = document.createElement("input");
+
+  // When
+  await typeText(element, "bar");
+
+  // Then
+  expect(element.value).toBe("bar");
+});
+
+it("should not clear filled input before typing text", async () => {
+  // Given
+  const element = document.createElement("input");
+
+  // When
+  await typeText(element, "foo");
+  await typeText(element, "bar", {
+    shouldClear: false
   });
 
-  it("should not clear filled input before typing text", async () => {
-    // Given
-    const element = document.createElement('input');
-  
-    // When
-    await typeText(element, "foo");
-    await typeText(element, "bar", {
-        shouldClear: false,
-    });
-  
-    expect(element.value).toBe("foobar");
-  });
+  // Then
+  expect(element.value).toBe("foobar");
+});

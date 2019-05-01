@@ -3,7 +3,14 @@ import { hover } from './hover';
 
 interface SelectOptions{}
 
-export const select = async (element: HTMLSelectElement, label: string, options: SelectOptions = {}) => {
+const defaultSelectOptions = {};
+
+export const select = async (element: HTMLSelectElement, label: string, options?: Partial<SelectOptions>) => {
+  const {} = {
+    ...defaultSelectOptions,
+    ...options,
+  }
+  
   if (element.tagName.toLowerCase() !== 'select') {
     throw new Error('A select element must be provided');
   }
