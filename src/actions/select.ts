@@ -21,7 +21,7 @@ export const select = async (
 
     await hover(element);
 
-    const selectedIndex = Array.from(element.options).findIndex(option => option.label === label);
+    const selectedIndex = Array.from(element.options).findIndex(option => (option.label || option.text) === label);
     element.selectedIndex = selectedIndex;
 
     dispatchEventsFromElement(element, 'change');
