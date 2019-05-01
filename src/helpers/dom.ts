@@ -1,7 +1,9 @@
 export const isElementEditable = (element: HTMLElement): boolean => {
+  const nodeName = element.nodeName.toLowerCase();
+
   return (
-    element.nodeName === "textarea" ||
-    (element.nodeName == "input" &&
+    nodeName === "textarea" ||
+    (nodeName == "input" &&
       /^(?:text|email|number|search|tel|url|password)$/i.test(
         (element as HTMLInputElement).type
       ))
