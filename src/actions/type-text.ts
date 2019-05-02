@@ -4,48 +4,48 @@ import { hover } from './hover';
 import { isElementEditable } from '../helpers/dom';
 
 interface TypeTextOptions {
-    shouldClear?: boolean;
-    shouldTypelikeAnUser?: boolean;
+  shouldClear?: boolean;
+  shouldTypelikeAnUser?: boolean;
 }
 
 const defaultTypeTextOptions = {
-    shouldClear: true,
-    shouldTypelikeAnUser: true,
+  shouldClear: true,
+  shouldTypelikeAnUser: true,
 };
 
 const typeTextLikeAnUser = async (element: HTMLInputElement, text: string): Promise<void> => {
-    for (const letter of text) {
-        element.value = element.value + letter;
+  for (const letter of text) {
+    element.value = element.value + letter;
 
-        await wait({ timeInMS: 200 });
-    }
+    await wait({ timeInMS: 200 });
+  }
 };
 
 export const typeText = async (
-    element: HTMLInputElement,
-    text: string,
-    options?: Partial<TypeTextOptions>,
+  element: HTMLInputElement,
+  text: string,
+  options?: Partial<TypeTextOptions>,
 ): Promise<void> => {
-    const { shouldClear, shouldTypelikeAnUser } = {
-        ...defaultTypeTextOptions,
-        ...options,
-    };
+  const { shouldClear, shouldTypelikeAnUser } = {
+    ...defaultTypeTextOptions,
+    ...options,
+  };
 
-    if (!isElementEditable(element)) {
-        throw new Error('Element is not editable');
-    }
+  if (!isElementEditable(element)) {
+    throw new Error('Element is not editable');
+  }
 
-    await hover(element);
+  await hover(element);
 
-    if (shouldClear) {
-        element.value = '';
-    }
+  if (shouldClear) {
+    element.value = '';
+  }
 
-    if (shouldTypelikeAnUser) {
-        await typeTextLikeAnUser(element, text);
-    } else {
-        element.value = text;
-    }
+  if (shouldTypelikeAnUser) {
+    await typeTextLikeAnUser(element, text);
+  } else {
+    element.value = text;
+  }
 
-    dispatchEventsFromElement(element, 'change', 'input');
+  dispatchEventsFromElement(element, 'change', 'input');
 };

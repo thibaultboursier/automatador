@@ -1,23 +1,23 @@
 import { createCursor } from './helpers/cursor';
 
 interface Options {
-    logs?: boolean;
+  logs?: boolean;
 }
 
 type Story = () => Promise<void>;
 
 const initialize = () => {
-    createCursor();
+  createCursor();
 };
 
 export const runStories = async (stories: Story[], options: Options = {}): Promise<void> => {
-    initialize();
+  initialize();
 
-    for (const story of stories) {
-        if (options.logs) {
-            console.log('running story ' + story.name);
-        }
-
-        await story();
+  for (const story of stories) {
+    if (options.logs) {
+      console.log('running story ' + story.name);
     }
+
+    await story();
+  }
 };
