@@ -12,7 +12,7 @@
     "type": "git",
     "url": "git+https://github.com/thibaultboursier/automatador.git"
   },
-  "author": "",
+  "author": "Thibault Boursier",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/thibaultboursier/automatador/issues"
@@ -42,6 +42,6 @@
     "webpack-cli": "^3.3.1"
   },
   "files": [
-    "/lib"
+    "lib/**/*"
   ]
 }
