@@ -1,5 +1,5 @@
 {
-  "name": "automate",
+  "name": "automatador",
   "version": "0.1.0",
   "description": "Automation of page manipulation",
   "main": "./lib/index.js",
@@ -10,14 +10,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/thibaultboursier/automate.git"
+    "url": "git+https://github.com/thibaultboursier/automatador.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/thibaultboursier/automate/issues"
+    "url": "https://github.com/thibaultboursier/automatador/issues"
   },
-  "homepage": "https://github.com/thibaultboursier/automate#readme",
+  "homepage": "https://github.com/thibaultboursier/automatador#readme",
   "dependencies": {
     "@types/jest": "^24.0.12",
     "typescript": "^3.4.5"
