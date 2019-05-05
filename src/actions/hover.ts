@@ -1,6 +1,6 @@
 import { getCursor } from '../helpers/cursor';
 
-export const hover = (element: HTMLElement): Promise<void> => {
+export const hover = <T extends HTMLElement>(element: T): Promise<void> => {
   const cursor = getCursor();
   const { offsetHeight, offsetWidth } = element;
   const { left, top } = element.getBoundingClientRect();

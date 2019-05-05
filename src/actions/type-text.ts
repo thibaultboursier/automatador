@@ -13,7 +13,7 @@ const defaultTypeTextOptions = {
   shouldTypelikeAnUser: true,
 };
 
-const typeTextLikeAnUser = async (element: HTMLInputElement, text: string): Promise<void> => {
+const typeTextLikeAnUser = async (element: HTMLInputElement | HTMLTextAreaElement, text: string): Promise<void> => {
   for (const letter of text) {
     element.value = element.value + letter;
 
@@ -22,7 +22,7 @@ const typeTextLikeAnUser = async (element: HTMLInputElement, text: string): Prom
 };
 
 export const typeText = async (
-  element: HTMLInputElement,
+  element: HTMLInputElement | HTMLTextAreaElement,
   text: string,
   options?: Partial<TypeTextOptions>,
 ): Promise<void> => {
