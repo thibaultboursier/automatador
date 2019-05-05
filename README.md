@@ -1,6 +1,16 @@
 # automatador
 Automation of page manipulation
 
-[![Linux Build Status](https://travis-ci.com/thibaultboursier/automatador.svg?branch=master)](https://travis-ci.com/thibaultboursier/automatador)
+[![npm Version](https://img.shields.io/npm/v/automatador.svg)](https://www.npmjs.com/package/automatador) [![License](https://img.shields.io/npm/l/automatador.svg)](https://www.npmjs.com/package/automatador) [![Linux Build Status](https://travis-ci.com/thibaultboursier/automatador.svg?branch=master)](https://travis-ci.com/thibaultboursier/automatador)
 
-![Automator demo](demo/demo.gif)
+![Automatador demo](demo/demo.gif)
+
+## Installation
+
+```
+npm i automatador --save-dev
+```
+
+## Examples
+
+Try demo here: [https://stackblitz.com/edit/automatador](https://stackblitz.com/edit/automatador).
