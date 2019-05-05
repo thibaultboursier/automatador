@@ -15,7 +15,7 @@ export const runStories = async (stories: Story[], options: Options = {}): Promi
 
   for (const story of stories) {
     if (options.logs) {
-      console.log('running story ' + story.name);
+      console.log(`[automatador] Running story "${story.name}"`);
     }
 
     await story();
