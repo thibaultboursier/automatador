@@ -7,7 +7,7 @@ const defaultOptions = {
 };
 
 export const findElement = <T extends Element>(selector: string, options?: Partial<Options>): Promise<T | null> => {
-  const { timeoutInMS } = {
+  const mergedOptions: Options = {
     ...defaultOptions,
     ...options,
   };
@@ -20,7 +20,7 @@ export const findElement = <T extends Element>(selector: string, options?: Parti
   return new Promise((resolve, reject) => {
     const interval = setInterval(() => {
       const element = document.querySelector(selector);
-      const isTimeElapsed = Date.now() - timeStamp >= timeoutInMS;
+      const isTimeElapsed = Date.now() - timeStamp >= mergedOptions.timeoutInMS;
 
       if (element) {
         clearInterval(interval);

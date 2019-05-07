@@ -12,6 +12,7 @@ interface Options {
 const defaultOptions: Options = {
   shouldClear: true,
   shouldTypelikeAnUser: true,
+  typingSpeed: 'NORMAL',
 };
 
 const typeTextLikeAnUser = async (
@@ -33,7 +34,7 @@ export const typeText = async (
   text: string,
   options?: Partial<Options>,
 ): Promise<void> => {
-  const { shouldClear, shouldTypelikeAnUser } = {
+  const mergedOptions: Options = {
     ...defaultOptions,
     ...options,
   };
@@ -44,12 +45,12 @@ export const typeText = async (
 
   await hover(element);
 
-  if (shouldClear) {
+  if (mergedOptions.shouldClear) {
     element.value = '';
   }
 
-  if (shouldTypelikeAnUser) {
-    await typeTextLikeAnUser(element, text, options);
+  if (mergedOptions.shouldTypelikeAnUser) {
+    await typeTextLikeAnUser(element, text, mergedOptions);
   } else {
     element.value = text;
   }

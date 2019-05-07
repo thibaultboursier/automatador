@@ -1,6 +1,7 @@
 import { createCursor } from './helpers/cursor';
 
 interface Options {
+  cursorSource?: string;
   logs?: boolean;
   speed?: 'NORMAL' | 'FAST';
 }
@@ -12,22 +13,23 @@ const defaultOptions: Options = {
   speed: 'NORMAL',
 };
 
-const initialize = ({ speed }: Options) => {
+const initialize = ({ cursorSource, speed }: Options) => {
   createCursor({
+    ...(cursorSource ? { source: cursorSource } : {}),
     transitionDuration: speed === 'FAST' ? '0.1s' : '0.5s',
   });
 };
 
 export const runStories = async (stories: Story[], options?: Partial<Options>): Promise<void> => {
-  options = {
+  const mergedOptions: Options = {
     ...defaultOptions,
     ...options,
   };
 
-  initialize(options);
+  initialize(mergedOptions);
 
   for (const story of stories) {
-    if (options.logs) {
+    if (mergedOptions.logs) {
       console.log(`[automatador] Running story "${story.name}"`);
     }
 
