@@ -2,16 +2,20 @@ import cursorBase64 from '../assets/cursor.png';
 
 let cursor: HTMLImageElement;
 
-enum CursorSpeed {
-  Fast = 'fast',
-  Normal = 'normal',
+interface Options {
+  transitionDuration?: string;
 }
 
-interface CreateCursorOptions {
-  speed?: CursorSpeed;
-}
+const defaultOptions: Options = {
+  transitionDuration: '0.5s',
+};
 
-export const createCursor = (): void => {
+export const createCursor = (options?: Partial<Options>): void => {
+  options = {
+    ...defaultOptions,
+    ...options,
+  };
+
   if (cursor) {
     return;
   }
@@ -22,7 +26,7 @@ export const createCursor = (): void => {
   cursor.style.left = '0px';
   cursor.style.position = 'fixed';
   cursor.style.top = '0px';
-  cursor.style.transition = `0.5s linear all`;
+  cursor.style.transition = `${options.transitionDuration} linear all`;
   cursor.style.zIndex = '15999';
   cursor.src = cursorBase64;
 

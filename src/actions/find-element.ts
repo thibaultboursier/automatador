@@ -1,17 +1,14 @@
-interface FindElementOptions {
+interface Options {
   timeoutInMS: number;
 }
 
-const defaultFindElementOptions = {
+const defaultOptions = {
   timeoutInMS: 10000,
 };
 
-export const findElement = <T extends Element>(
-  selector: string,
-  options?: Partial<FindElementOptions>,
-): Promise<T | null> => {
+export const findElement = <T extends Element>(selector: string, options?: Partial<Options>): Promise<T | null> => {
   const { timeoutInMS } = {
-    ...defaultFindElementOptions,
+    ...defaultOptions,
     ...options,
   };
   const timeStamp = Date.now();
@@ -23,13 +20,14 @@ export const findElement = <T extends Element>(
   return new Promise((resolve, reject) => {
     const interval = setInterval(() => {
       const element = document.querySelector(selector);
+      const isTimeElapsed = Date.now() - timeStamp >= timeoutInMS;
 
       if (element) {
         clearInterval(interval);
         return resolve(element as T);
       }
 
-      if (Date.now() - timeStamp >= timeoutInMS) {
+      if (isTimeElapsed) {
         clearInterval(interval);
         return reject(`Element "${selector}" was not found`);
       }

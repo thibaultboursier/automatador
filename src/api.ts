@@ -2,16 +2,29 @@ import { createCursor } from './helpers/cursor';
 
 interface Options {
   logs?: boolean;
+  speed?: 'NORMAL' | 'FAST';
 }
 
 type Story = () => Promise<void>;
 
-const initialize = () => {
-  createCursor();
+const defaultOptions: Options = {
+  logs: false,
+  speed: 'NORMAL',
 };
 
-export const runStories = async (stories: Story[], options: Options = {}): Promise<void> => {
-  initialize();
+const initialize = ({ speed }: Options) => {
+  createCursor({
+    transitionDuration: speed === 'FAST' ? '0.1s' : '0.5s',
+  });
+};
+
+export const runStories = async (stories: Story[], options?: Partial<Options>): Promise<void> => {
+  options = {
+    ...defaultOptions,
+    ...options,
+  };
+
+  initialize(options);
 
   for (const story of stories) {
     if (options.logs) {

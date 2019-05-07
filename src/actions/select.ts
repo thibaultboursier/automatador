@@ -1,17 +1,13 @@
 import { dispatchEventsFromElement } from '../helpers/events';
 import { hover } from './hover';
 
-interface SelectOptions {}
+interface Options {}
 
-const defaultSelectOptions = {};
+const defaultOptions: Options = {};
 
-export const select = async (
-  element: HTMLSelectElement,
-  label: string,
-  options?: Partial<SelectOptions>,
-): Promise<void> => {
+export const select = async (element: HTMLSelectElement, label: string, options?: Partial<Options>): Promise<void> => {
   const {} = {
-    ...defaultSelectOptions,
+    ...defaultOptions,
     ...options,
   };
 

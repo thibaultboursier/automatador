@@ -3,31 +3,38 @@ import { dispatchEventsFromElement } from '../helpers/events';
 import { hover } from './hover';
 import { isElementEditable } from '../helpers/dom';
 
-interface TypeTextOptions {
+interface Options {
   shouldClear?: boolean;
   shouldTypelikeAnUser?: boolean;
+  typingSpeed?: 'NORMAL' | 'FAST';
 }
 
-const defaultTypeTextOptions = {
+const defaultOptions: Options = {
   shouldClear: true,
   shouldTypelikeAnUser: true,
 };
 
-const typeTextLikeAnUser = async (element: HTMLInputElement | HTMLTextAreaElement, text: string): Promise<void> => {
+const typeTextLikeAnUser = async (
+  element: HTMLInputElement | HTMLTextAreaElement,
+  text: string,
+  options: Options = {},
+): Promise<void> => {
+  const timeInMS = options.typingSpeed && options.typingSpeed === 'FAST' ? 50 : 200;
+
   for (const letter of text) {
     element.value = element.value + letter;
 
-    await wait({ timeInMS: 200 });
+    await wait({ timeInMS });
   }
 };
 
 export const typeText = async (
   element: HTMLInputElement | HTMLTextAreaElement,
   text: string,
-  options?: Partial<TypeTextOptions>,
+  options?: Partial<Options>,
 ): Promise<void> => {
   const { shouldClear, shouldTypelikeAnUser } = {
-    ...defaultTypeTextOptions,
+    ...defaultOptions,
     ...options,
   };
 
@@ -42,7 +49,7 @@ export const typeText = async (
   }
 
   if (shouldTypelikeAnUser) {
-    await typeTextLikeAnUser(element, text);
+    await typeTextLikeAnUser(element, text, options);
   } else {
     element.value = text;
   }
