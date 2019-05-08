@@ -4,7 +4,7 @@ jest.mock('./hover', () => ({
   hover: () => {},
 }));
 
-it('should find element', async () => {
+it('should select correct option inside select element', async () => {
   // Given
   const element = document.createElement('select');
   element.options.add(new Option('Option a', 'a'));
