@@ -4,4 +4,5 @@ export * from './find-element';
 export * from './hover';
 export * from './select';
 export * from './type-text';
+export * from './uncheck';
 export * from './wait';
