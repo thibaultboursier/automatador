@@ -1,7 +1,8 @@
-import { createCursor } from './helpers/cursor';
+import { createCursor, deleteCursor } from './helpers/cursor';
 
 interface Options {
   cursorSource?: string;
+  deleteCursorWhenFinished?: boolean;
   logs?: boolean;
   speed?: 'NORMAL' | 'FAST';
 }
@@ -9,6 +10,7 @@ interface Options {
 type Story = () => Promise<void>;
 
 const defaultOptions: Options = {
+  deleteCursorWhenFinished: false,
   logs: false,
   speed: 'NORMAL',
 };
@@ -34,5 +36,9 @@ export const runStories = async (stories: Story[], options?: Partial<Options>): 
     }
 
     await story();
+  }
+
+  if (mergedOptions.deleteCursorWhenFinished) {
+    deleteCursor();
   }
 };
