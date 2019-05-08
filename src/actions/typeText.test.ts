@@ -1,4 +1,4 @@
-import { typeText } from './type-text';
+import { typeText } from './typeText';
 
 jest.mock('./hover', () => ({
   hover: () => {},

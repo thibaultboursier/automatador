@@ -1,4 +1,4 @@
-import { findElement } from './find-element';
+import { findElement } from './findElement';
 
 jest.mock('./hover', () => ({
   hover: () => {},
