@@ -1,3 +1,4 @@
+export * from './check';
 export * from './click';
 export * from './find-element';
 export * from './hover';
