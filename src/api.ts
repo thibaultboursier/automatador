@@ -36,7 +36,7 @@ export const runStories = async (stories: Story[], options?: Partial<Options>): 
     ...options,
   };
 
-  if (isRunning) {
+  if (isRunning()) {
     throw new Error('Already running');
   }
 
