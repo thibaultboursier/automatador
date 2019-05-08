@@ -6,7 +6,7 @@ const defaultOptions = {
   timeoutInMS: 10000,
 };
 
-export const findElement = <T extends Element>(selector: string, options?: Partial<Options>): Promise<T | null> => {
+export const findElement = <T extends Element>(selector: string, options?: Partial<Options>): Promise<T> => {
   const mergedOptions: Options = {
     ...defaultOptions,
     ...options,
